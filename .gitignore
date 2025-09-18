@@ -1,0 +1,99 @@
+# Logs
+.pnpm-debug.log*
+*.log
+lerna-debug.log*
+logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Directory for instrumented libs
+lib-cov
+
+# Test coverage
+.nyc_output
+*.lcov
+coverage
+playwright-report
+test-results
+
+# Build tools and output
+.grunt
+.mf
+.lock-wscript
+.wrangler
+bower_components
+build
+dist
+dist-ssr
+web_modules
+
+# Dependencies
+jspm_packages
+node_modules
+
+# Cache directories
+.cache
+.eslintcache
+.fusebox
+.npm
+.parcel-cache
+.rts2_*
+.stylelintcache
+.temp
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment variables
+.dev.vars
+.env*
+
+# Framework specific
+.docusaurus
+.next
+.nitro
+.nuxt
+.output
+.react-router
+.serverless
+.tanstack
+.turbo
+.vuepress/dist
+out
+
+# Package managers
+.pnp.*
+.yarn-integrity
+.yarn/*
+*.tgz
+
+# Databases
+.branches
+.dynamodb
+local.session.sql
+
+# IDE and Editor
+.idea
+.tern-port
+.vscode-test
+*.code-workspace
+
+# Chrome DevTools
+com.chrome.devtools.json
+
+# OS specific
+.DS_Store
+
+# Generated files
+*.gen.ts
+
+# SSL
+*.pem
