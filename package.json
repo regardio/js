@@ -20,7 +20,7 @@
   "private": false,
   "scripts": {
     "build": "exec-tsc --project tsconfig.build.json",
-    "clean": "exec-clean .turbo dist node_modules",
+    "clean": "exec-clean .turbo dist",
     "dev": "exec-tsc --project tsconfig.build.json --watch",
     "lint": "exec-s lint:* typecheck",
     "lint:biome": "lint-biome check --write .",
