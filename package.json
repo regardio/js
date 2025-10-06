@@ -23,7 +23,7 @@
     "clean": "exec-clean .turbo dist",
     "dev": "exec-tsc --project tsconfig.build.json --watch",
     "lint": "exec-s lint:* typecheck",
-    "lint:biome": "lint-biome check --write .",
+    "lint:biome": "lint-biome check --write --unsafe .",
     "lint:md": "lint-md --fix \"**/*.md\" \"!**/node_modules/**\" \"!**/dist/**\"",
     "prepare": "exec-husky",
     "typecheck": "exec-tsc --noEmit"
