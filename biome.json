@@ -1,5 +1,4 @@
 {
   "$schema": "https://biomejs.dev/schemas/latest/schema.json",
-  "extends": ["@regardio/system/biome"],
-  "root": true
+  "extends": ["../../regardio/system/src/biome/preset.json"]
 }
