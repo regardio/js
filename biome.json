@@ -1,4 +1,8 @@
 {
   "$schema": "https://biomejs.dev/schemas/latest/schema.json",
-  "extends": ["../../regardio/system/src/biome/preset.json"]
+  "extends": ["@regardio/system/biome"],
+  "files": {
+    "ignoreUnknown": true,
+    "includes": ["**"]
+  }
 }
