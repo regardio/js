@@ -9,7 +9,14 @@
     "rootDir": "./src",
     "sourceMap": false
   },
-  "exclude": ["tests/**/*", "dist/**/*"],
+  "exclude": [
+    "dist/**/*",
+    "src/**/*.spec.ts",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "tests/**/*"
+  ],
   "extends": "./tsconfig.json",
   "include": ["src/**/*.ts"]
 }
