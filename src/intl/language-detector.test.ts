@@ -1,5 +1,5 @@
-import { describe, expect, mock, test } from 'bun:test';
 import type { Session, SessionData } from 'react-router';
+import { describe, expect, test, vi } from 'vitest';
 import { LanguageDetector, LanguageDetectorLingui } from './language-detector';
 
 describe('LanguageDetector', () => {
@@ -21,9 +21,9 @@ describe('LanguageDetector', () => {
       const mockCookie = {
         isSigned: false,
         name: 'lng',
-        parse: mock(() => Promise.resolve('de')),
+        parse: vi.fn(() => Promise.resolve('de')),
         secrets: ['secret'],
-        serialize: mock(() => Promise.resolve('serialized-cookie')),
+        serialize: vi.fn(() => Promise.resolve('serialized-cookie')),
       };
 
       const detector = new LanguageDetector({
@@ -43,18 +43,18 @@ describe('LanguageDetector', () => {
 
     test('should detect language from session', async () => {
       const mockSession = {
-        commitSession: mock(() => Promise.resolve('')),
-        destroySession: mock(() => Promise.resolve('')),
-        getSession: mock(() =>
+        commitSession: vi.fn(() => Promise.resolve('')),
+        destroySession: vi.fn(() => Promise.resolve('')),
+        getSession: vi.fn(() =>
           Promise.resolve({
             data: { lng: 'de' },
-            flash: mock(() => {}),
+            flash: vi.fn(() => {}),
             // biome-ignore lint/suspicious/noExplicitAny: This is acceptable in tests
             get: <Key extends string>(key: Key): any => (key === 'lng' ? 'de' : undefined),
             has: (key: string): key is 'lng' => key === 'lng',
             id: '123',
-            set: mock(() => {}),
-            unset: mock(() => {}),
+            set: vi.fn(() => {}),
+            unset: vi.fn(() => {}),
           } satisfies Session<SessionData>),
         ),
       };
@@ -97,9 +97,9 @@ describe('LanguageDetector', () => {
       const mockCookie = {
         isSigned: false,
         name: 'lng',
-        parse: mock(() => Promise.reject(new Error('Cookie parsing failed'))),
+        parse: vi.fn(() => Promise.reject(new Error('Cookie parsing failed'))),
         secrets: ['secret'],
-        serialize: mock(() => Promise.resolve('serialized-cookie')),
+        serialize: vi.fn(() => Promise.resolve('serialized-cookie')),
       };
 
       const detector = new LanguageDetector({
@@ -120,18 +120,18 @@ describe('LanguageDetector', () => {
 
     test('should handle multiple language preferences in session', async () => {
       const mockSession = {
-        commitSession: mock(() => Promise.resolve('')),
-        destroySession: mock(() => Promise.resolve('')),
-        getSession: mock(() =>
+        commitSession: vi.fn(() => Promise.resolve('')),
+        destroySession: vi.fn(() => Promise.resolve('')),
+        getSession: vi.fn(() =>
           Promise.resolve({
             data: { lng: ['de', 'en'] },
-            flash: mock(() => {}),
+            flash: vi.fn(() => {}),
             // biome-ignore lint/suspicious/noExplicitAny: This is acceptable in tests
             get: <Key extends string>(key: Key): any => (key === 'lng' ? ['de', 'en'] : undefined),
             has: (key: string): key is 'lng' => key === 'lng',
             id: '123',
-            set: mock(() => {}),
-            unset: mock(() => {}),
+            set: vi.fn(() => {}),
+            unset: vi.fn(() => {}),
           } satisfies Session<SessionData>),
         ),
       };

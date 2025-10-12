@@ -8,7 +8,8 @@
   },
   "description": "Regardio JavaScript utilities",
   "devDependencies": {
-    "@regardio/system": "workspace:*"
+    "@regardio/system": "workspace:*",
+    "vitest": "3.2.4"
   },
   "exports": {
     ".": {
@@ -27,6 +28,7 @@
     "lint:biome": "lint-biome check --write --unsafe .",
     "lint:md": "lint-md --fix \"**/*.md\" \"!**/node_modules/**\" \"!**/dist/**\"",
     "prepare": "exec-husky",
+    "test": "vitest run",
     "typecheck": "exec-tsc --noEmit"
   },
   "sideEffects": false,
