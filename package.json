@@ -3,7 +3,8 @@
     "Bernd Matzner <bernd.matzner@regard.io>"
   ],
   "dependencies": {
-    "intl-parse-accept-language": "1.0.0"
+    "intl-parse-accept-language": "1.0.0",
+    "react-router": "7.9.4"
   },
   "description": "Regardio JavaScript utilities",
   "devDependencies": {
