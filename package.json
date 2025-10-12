@@ -9,6 +9,7 @@
   "description": "Regardio JavaScript utilities",
   "devDependencies": {
     "@regardio/system": "workspace:*",
+    "@vitest/ui": "3.2.4",
     "vitest": "3.2.4"
   },
   "exports": {
@@ -28,7 +29,10 @@
     "lint:biome": "lint-biome check --write --unsafe .",
     "lint:md": "lint-md --fix \"**/*.md\" \"!**/node_modules/**\" \"!**/dist/**\"",
     "prepare": "exec-husky",
-    "test": "vitest run",
+    "report": "exec-s report:*",
+    "report:unit": "vitest run --reporter html",
+    "test": "exec-s test:*",
+    "test:unit": "vitest run",
     "typecheck": "exec-tsc --noEmit"
   },
   "sideEffects": false,
