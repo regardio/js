@@ -28,9 +28,7 @@ across all Ensemble TypeScript applications.
 ### Installation
 
 ```bash
-npm install @regardio/js
-# or
-bun add @regardio/js
+pnpm add @regardio/js
 ```
 
 ## License
