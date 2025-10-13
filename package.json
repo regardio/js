@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "authors": [
     "Bernd Matzner <bernd.matzner@regard.io>"
   ],
@@ -16,9 +17,53 @@
     "vitest": "3.2.4"
   },
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+    "./async/delay": {
+      "import": "./dist/async/delay.js",
+      "types": "./dist/async/delay.d.ts"
+    },
+    "./browser/base64": {
+      "import": "./dist/browser/base64.js",
+      "types": "./dist/browser/base64.d.ts"
+    },
+    "./format/bytes": {
+      "import": "./dist/format/bytes.js",
+      "types": "./dist/format/bytes.d.ts"
+    },
+    "./format/measure": {
+      "import": "./dist/format/measure.js",
+      "types": "./dist/format/measure.d.ts"
+    },
+    "./http/cookie": {
+      "import": "./dist/http/cookie.js",
+      "types": "./dist/http/cookie.d.ts"
+    },
+    "./http/domain": {
+      "import": "./dist/http/domain.js",
+      "types": "./dist/http/domain.d.ts"
+    },
+    "./http/request-helpers": {
+      "import": "./dist/http/request-helpers.js",
+      "types": "./dist/http/request-helpers.d.ts"
+    },
+    "./intl/language-detector": {
+      "import": "./dist/intl/language-detector.js",
+      "types": "./dist/intl/language-detector.d.ts"
+    },
+    "./intl/locale": {
+      "import": "./dist/intl/locale.js",
+      "types": "./dist/intl/locale.d.ts"
+    },
+    "./time/time": {
+      "import": "./dist/time/time.js",
+      "types": "./dist/time/time.d.ts"
+    },
+    "./validation/invariant": {
+      "import": "./dist/validation/invariant.js",
+      "types": "./dist/validation/invariant.d.ts"
+    },
+    "./validation/verify-file-accept": {
+      "import": "./dist/validation/verify-file-accept.js",
+      "types": "./dist/validation/verify-file-accept.d.ts"
     }
   },
   "license": "MIT",
