@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/package.json",
+  "$schema": "https://www.schemastore.org/package.json",
   "authors": ["Bernd Matzner <bernd.matzner@regard.io>"],
   "dependencies": {
     "intl-parse-accept-language": "1.0.0",
