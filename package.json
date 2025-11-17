@@ -10,9 +10,9 @@
     "@regardio/system": "workspace:*",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/node": "24.10.1",
-    "@vitest/ui": "4.0.9",
+    "@vitest/ui": "4.0.10",
     "typescript": "5.9.3",
-    "vitest": "4.0.9"
+    "vitest": "4.0.10"
   },
   "exports": {
     "./async/delay": {
