@@ -3,7 +3,7 @@
   "authors": ["Bernd Matzner <bernd.matzner@regard.io>"],
   "dependencies": {
     "intl-parse-accept-language": "1.0.0",
-    "react-router": "7.10.0"
+    "react-router": "7.10.1"
   },
   "description": "Regardio JavaScript utilities",
   "devDependencies": {
