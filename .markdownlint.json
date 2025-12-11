@@ -1,4 +1,4 @@
 {
   "$schema": "https://raw.githubusercontent.com/DavidAnson/markdownlint/main/schema/markdownlint-config-schema.json",
-  "extends": "@regardio/system/markdownlint"
+  "extends": "@regardio/dev/markdownlint"
 }
