@@ -48,10 +48,6 @@
       "import": "./dist/intl/language-detector.js",
       "types": "./dist/intl/language-detector.d.ts"
     },
-    "./intl/locale": {
-      "import": "./dist/intl/locale.js",
-      "types": "./dist/intl/locale.d.ts"
-    },
     "./time/time": {
       "import": "./dist/time/time.js",
       "types": "./dist/time/time.d.ts"
@@ -108,5 +104,5 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "0.2.3"
+  "version": "0.2.4"
 }

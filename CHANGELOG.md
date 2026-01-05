@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.2.4
+
+### Patch Changes
+
+- fix: merge locale into language-detector to eliminate ESM import issue
+
 ## 0.2.3
 
 ### Patch Changes

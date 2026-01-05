@@ -1,6 +1,5 @@
 import { parseAcceptLanguage } from 'intl-parse-accept-language';
 import type { Cookie, SessionStorage } from 'react-router';
-import { getClientLocales } from './locale';
 
 export interface LanguageDetectorOption {
   /**
@@ -212,4 +211,39 @@ export class LanguageDetector {
 
     return parsed[0] || this.options.fallbackLanguage;
   }
+}
+
+type Locales = string | string[] | undefined;
+
+/**
+ * Get the client's locales from the Accept-Language header.
+ * If the header is not defined returns undefined.
+ * If the header is defined return an array of locales, sorted by the quality
+ * value.
+ */
+function getClientLocales(headers: Headers): Locales;
+function getClientLocales(request: Request): Locales;
+function getClientLocales(requestOrHeaders: Request | Headers): Locales {
+  const headers = getHeaders(requestOrHeaders);
+
+  const acceptLanguage = headers.get('Accept-Language');
+
+  if (!acceptLanguage) return undefined;
+
+  const locales = parseAcceptLanguage(acceptLanguage, {
+    ignoreWildcard: true,
+    validate: Intl.DateTimeFormat.supportedLocalesOf,
+  });
+
+  if (locales.length === 0) return undefined;
+  if (locales.length === 1) return locales[0];
+  return locales;
+}
+
+function getHeaders(requestOrHeaders: Request | Headers): Headers {
+  if (requestOrHeaders instanceof Request) {
+    return requestOrHeaders.headers;
+  }
+
+  return requestOrHeaders;
 }
