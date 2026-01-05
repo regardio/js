@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.2.3
+
+### Patch Changes
+
+- fix: include locale module in dist
+
 ## 0.2.2
 
 ### Patch Changes
