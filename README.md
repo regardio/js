@@ -5,11 +5,32 @@
 A collection of lightweight, tree-shakeable utility functions for common tasks
 like HTTP handling, internationalization, time formatting, and validation.
 
+## ⚠️ Pre-release Notice
+
+**This package is currently in pre-release (v0.x).** While we use these utilities in production across our own projects, the API may still change between minor versions. We recommend:
+
+- Pinning to exact versions in your `package.json`
+- Reviewing changelogs before upgrading
+- Expecting potential breaking changes until v1.0
+
+## Why This Package?
+
+We created `@regardio/js` to:
+
+- **Share battle-tested utilities** — These functions power real Regardio projects and have been refined through actual use
+- **Reduce boilerplate** — Common patterns like cookie handling, language detection, and time formatting in one place
+- **Stay framework-agnostic** — Works with any JavaScript/TypeScript project (React, Node, Deno, etc.)
+- **Enable tree-shaking** — Import only what you need; unused utilities won't bloat your bundle
+
 ## Installation
 
 ```bash
 pnpm add @regardio/js
 ```
+
+## Documentation
+
+See the [docs](./docs) folder for detailed documentation on each module.
 
 ## Modules
 
@@ -146,9 +167,34 @@ verifyAccept('image/png', 'image/*'); // true
 verifyAccept('video/mp4', 'image/*'); // false
 ```
 
+## Module Overview
+
+| Module | Description |
+|--------|-------------|
+| `async/delay` | Promise-based delay utility |
+| `browser/base64` | URL-safe base64 to Uint8Array conversion |
+| `format/bytes` | Human-readable byte formatting |
+| `format/measure` | Performance measurement with logging |
+| `http/cookie` | Browser cookie get/set helpers |
+| `http/domain` | Domain extraction from requests (proxy-aware) |
+| `http/request-helpers` | URL cleaning utilities |
+| `intl/language-detector` | Server-side language detection for i18n |
+| `intl/locale` | Client locale extraction from headers |
+| `time/time` | Time formatting and date utilities |
+| `validation/invariant` | Runtime assertion utilities |
+| `validation/verify-file-accept` | MIME type validation for file uploads |
+
+## Contributing
+
+This package is primarily maintained for Regardio's internal use, but we welcome:
+
+- Bug reports and fixes
+- Documentation improvements
+- Feature suggestions (though we may not implement all requests)
+
 ## License
 
-**MIT License** - Free to use in commercial and open source projects.
+**MIT License** — Free to use in commercial and open source projects.
 
 ---
 

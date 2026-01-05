@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.3.0
+
+### Minor Changes
+
+- initial documentation
+
 ## 0.2.4
 
 ### Patch Changes
