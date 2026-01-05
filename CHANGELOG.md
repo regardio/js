@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.2.2
+
+### Patch Changes
+
+- tsreset
+
 ## 0.2.1
 
 ### Patch Changes
