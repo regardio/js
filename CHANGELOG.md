@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.4.0
+
+### Minor Changes
+
+- fix: switch to tsup build
+
 ## 0.3.0
 
 ### Minor Changes
