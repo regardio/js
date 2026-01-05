@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.4.2
+
+### Patch Changes
+
+- package tweaks
+
 ## 0.4.1
 
 ### Patch Changes
