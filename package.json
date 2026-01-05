@@ -10,8 +10,7 @@
   },
   "description": "Regardio JavaScript utilities",
   "devDependencies": {
-    "@regardio/dev": "1.9.2",
-    "@total-typescript/ts-reset": "0.6.1",
+    "@regardio/dev": "1.9.4",
     "@types/node": "25.0.3",
     "vitest": "4.0.16"
   },
@@ -65,9 +64,7 @@
       "types": "./dist/validation/verify-file-accept.d.ts"
     }
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "homepage": "https://github.com/regardio/js#readme",
   "keywords": [
     "utilities",
@@ -95,10 +92,10 @@
     "dev": "exec-tsc --project tsconfig.build.json --watch",
     "fix": "exec-p fix:*",
     "fix:biome": "lint-biome check --write --unsafe .",
-    "fix:md": "lint-md --fix \"**/*.md\" \"**/*.mdx\" \"!**/node_modules/**\" \"!**/dist/**\"",
+    "fix:md": "lint-md --fix",
     "lint": "exec-p lint:*",
     "lint:biome": "lint-biome check .",
-    "lint:md": "lint-md \"**/*.md\" \"**/*.mdx\" \"!**/node_modules/**\" \"!**/dist/**\"",
+    "lint:md": "lint-md",
     "prepare": "exec-husky",
     "release": "flow-release",
     "report": "exec-s report:*",
@@ -110,5 +107,5 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }

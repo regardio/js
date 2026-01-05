@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.2.1
+
+### Patch Changes
+
+- markdownlint config
+
 ## 0.2.0
 
 ### Minor Changes
