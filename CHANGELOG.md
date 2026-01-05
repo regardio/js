@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.4.1
+
+### Patch Changes
+
+- chore: deps
+
 ## 0.4.0
 
 ### Minor Changes

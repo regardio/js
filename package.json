@@ -13,7 +13,7 @@
     "@regardio/dev": "1.9.4",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/node": "25.0.3",
-    "tsup": "8.5.0",
+    "tsup": "8.5.1",
     "vitest": "4.0.16"
   },
   "exports": {
@@ -105,5 +105,5 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "0.4.0"
+  "version": "0.4.1"
 }
