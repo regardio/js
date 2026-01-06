@@ -10,56 +10,36 @@
   },
   "description": "Regardio JavaScript utilities",
   "devDependencies": {
-    "@regardio/dev": "1.10.1",
+    "@regardio/dev": "1.10.2",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/node": "25.0.3",
     "tsup": "8.5.1",
     "vitest": "4.0.16"
   },
   "exports": {
-    "./async/delay": {
-      "import": "./dist/async/delay.js",
-      "types": "./dist/async/delay.d.ts"
+    "./assert": {
+      "import": "./dist/assert/index.js",
+      "types": "./dist/assert/index.d.ts"
     },
-    "./browser/base64": {
-      "import": "./dist/browser/base64.js",
-      "types": "./dist/browser/base64.d.ts"
+    "./encoding": {
+      "import": "./dist/encoding/index.js",
+      "types": "./dist/encoding/index.d.ts"
     },
-    "./format/bytes": {
-      "import": "./dist/format/bytes.js",
-      "types": "./dist/format/bytes.d.ts"
+    "./http": {
+      "import": "./dist/http/index.js",
+      "types": "./dist/http/index.d.ts"
     },
-    "./format/measure": {
-      "import": "./dist/format/measure.js",
-      "types": "./dist/format/measure.d.ts"
+    "./intl": {
+      "import": "./dist/intl/index.js",
+      "types": "./dist/intl/index.d.ts"
     },
-    "./http/cookie": {
-      "import": "./dist/http/cookie.js",
-      "types": "./dist/http/cookie.d.ts"
+    "./text": {
+      "import": "./dist/text/index.js",
+      "types": "./dist/text/index.d.ts"
     },
-    "./http/domain": {
-      "import": "./dist/http/domain.js",
-      "types": "./dist/http/domain.d.ts"
-    },
-    "./http/request-helpers": {
-      "import": "./dist/http/request-helpers.js",
-      "types": "./dist/http/request-helpers.d.ts"
-    },
-    "./intl/language-detector": {
-      "import": "./dist/intl/language-detector.js",
-      "types": "./dist/intl/language-detector.d.ts"
-    },
-    "./time/time": {
-      "import": "./dist/time/time.js",
-      "types": "./dist/time/time.d.ts"
-    },
-    "./validation/invariant": {
-      "import": "./dist/validation/invariant.js",
-      "types": "./dist/validation/invariant.d.ts"
-    },
-    "./validation/verify-file-accept": {
-      "import": "./dist/validation/verify-file-accept.js",
-      "types": "./dist/validation/verify-file-accept.d.ts"
+    "./time": {
+      "import": "./dist/time/index.js",
+      "types": "./dist/time/index.d.ts"
     }
   },
   "files": ["dist"],
@@ -105,5 +85,5 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "0.4.2"
+  "version": "0.5.0"
 }

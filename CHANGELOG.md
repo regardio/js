@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.5.0
+
+### Minor Changes
+
+- more intuitive file structure, string-handling functions
+
 ## 0.4.2
 
 ### Patch Changes

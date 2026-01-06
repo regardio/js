@@ -16,8 +16,8 @@ importers:
         version: 7.11.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
     devDependencies:
       '@regardio/dev':
-        specifier: 1.10.1
-        version: 1.10.1(@testing-library/dom@10.4.1)(jiti@2.6.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: 1.10.2
+        version: 1.10.2(@testing-library/dom@10.4.1)(jiti@2.6.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@total-typescript/ts-reset':
         specifier: 0.6.1
         version: 0.6.1
@@ -496,8 +496,8 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
-  '@regardio/dev@1.10.1':
-    resolution: {integrity: sha512-LMbaU825nFtN+2b7Nr4Lb45+vxrsno6isWGpzYuGriwCfA9QRBs8+aCNZpoMswj8FAo8Ho7p1wbGqI8FEztbjQ==}
+  '@regardio/dev@1.10.2':
+    resolution: {integrity: sha512-KxOQIQ8jskmaXwLrkfLBw04nuS9Qgm0JSynlr7IFaRHNes3LQ9k3pah8b+dsnQppVwcxh0Cfh0v65BRDF2Sk5A==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -3096,7 +3096,7 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@regardio/dev@1.10.1(@testing-library/dom@10.4.1)(jiti@2.6.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@regardio/dev@1.10.2(@testing-library/dom@10.4.1)(jiti@2.6.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@biomejs/biome': 2.3.11
       '@changesets/changelog-github': 0.5.2

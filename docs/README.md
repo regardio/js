@@ -2,47 +2,40 @@
 
 This folder contains detailed documentation for all modules in the `@regardio/js` package.
 
-## Structure
+## Modules
 
-- **[async/](./async/)** — Asynchronous utilities
-- **[browser/](./browser/)** — Browser-specific utilities
-- **[format/](./format/)** — Formatting utilities
-- **[http/](./http/)** — HTTP and request utilities
-- **[intl/](./intl/)** — Internationalization utilities
-- **[time/](./time/)** — Time and date utilities
-- **[validation/](./validation/)** — Validation utilities
+### [text](./text/)
 
-## Quick Links
+String manipulation and formatting utilities.
 
-### Async
+- [text.md](./text/text.md) - Typographic quotes, text splitting, truncation, author parsing, byte formatting
 
-- [delay](./async/delay.md) — Promise-based delay
+### [time](./time/)
 
-### Browser
+Date, time, and async utilities.
 
-- [base64](./browser/base64.md) — URL-safe base64 conversion
+- [time.md](./time/time.md) - Time formatting, delays, performance measurement
 
-### Format
+### [http](./http/)
 
-- [bytes](./format/bytes.md) — Human-readable byte formatting
-- [measure](./format/measure.md) — Performance measurement
+HTTP, cookie, and routing utilities.
 
-### HTTP
+- [http.md](./http/http.md) - Cookies, domain extraction, route matching
 
-- [cookie](./http/cookie.md) — Cookie get/set helpers
-- [domain](./http/domain.md) — Domain extraction
-- [request-helpers](./http/request-helpers.md) — URL utilities
+### [intl](./intl/)
 
-### Intl
+Internationalization utilities.
 
-- [language-detector](./intl/language-detector.md) — Server-side language detection
-- [locale](./intl/locale.md) — Client locale extraction
+- [intl.md](./intl/intl.md) - Server-side language detection
 
-### Time
+### [assert](./assert/)
 
-- [time](./time/time.md) — Time formatting utilities
+Runtime assertion and validation utilities.
 
-### Validation
+- [assert.md](./assert/assert.md) - Invariants and MIME validation
 
-- [invariant](./validation/invariant.md) — Runtime assertions
-- [verify-file-accept](./validation/verify-file-accept.md) — MIME type validation
+### [encoding](./encoding/)
+
+Binary encoding utilities.
+
+- [encoding.md](./encoding/encoding.md) - Base64 conversions
