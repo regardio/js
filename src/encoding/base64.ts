@@ -15,3 +15,13 @@ export const urlBase64ToUint8Array = (base64String: string): Uint8Array => {
 
   return outputArray;
 };
+
+/**
+ * Generate a cryptographically secure random base64 string.
+ * @returns A base64-encoded random string (16 bytes of entropy)
+ */
+export function generateRandomBase64(): string {
+  const array = new Uint8Array(16);
+  crypto.getRandomValues(array);
+  return btoa(String.fromCharCode(...array));
+}

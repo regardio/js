@@ -1,1 +1,1 @@
-export { urlBase64ToUint8Array } from './base64';
+export { generateRandomBase64, urlBase64ToUint8Array } from './base64';

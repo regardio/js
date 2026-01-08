@@ -1,49 +1,9 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
-  "author": "Bernd Matzner <bernd.matzner@regard.io>",
-  "bugs": {
-    "url": "https://github.com/regardio/js/issues"
-  },
-  "dependencies": {
-    "intl-parse-accept-language": "1.0.0",
-    "react-router": "7.11.0"
-  },
+  "name": "@regardio/js",
+  "version": "0.6.0",
+  "private": false,
   "description": "Regardio JavaScript utilities",
-  "devDependencies": {
-    "@regardio/dev": "1.10.3",
-    "@total-typescript/ts-reset": "0.6.1",
-    "@types/node": "25.0.3",
-    "tsup": "8.5.1",
-    "vitest": "4.0.16"
-  },
-  "exports": {
-    "./assert": {
-      "import": "./dist/assert/index.js",
-      "types": "./dist/assert/index.d.ts"
-    },
-    "./encoding": {
-      "import": "./dist/encoding/index.js",
-      "types": "./dist/encoding/index.d.ts"
-    },
-    "./http": {
-      "import": "./dist/http/index.js",
-      "types": "./dist/http/index.d.ts"
-    },
-    "./intl": {
-      "import": "./dist/intl/index.js",
-      "types": "./dist/intl/index.d.ts"
-    },
-    "./text": {
-      "import": "./dist/text/index.js",
-      "types": "./dist/text/index.d.ts"
-    },
-    "./time": {
-      "import": "./dist/time/index.js",
-      "types": "./dist/time/index.d.ts"
-    }
-  },
-  "files": ["dist"],
-  "homepage": "https://github.com/regardio/js#readme",
   "keywords": [
     "utilities",
     "javascript",
@@ -54,16 +14,47 @@
     "time",
     "format"
   ],
-  "license": "MIT",
-  "name": "@regardio/js",
-  "private": false,
-  "publishConfig": {
-    "access": "public"
+  "homepage": "https://github.com/regardio/js#readme",
+  "bugs": {
+    "url": "https://github.com/regardio/js/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/regardio/js.git"
   },
+  "license": "MIT",
+  "author": "Bernd Matzner <bernd.matzner@regard.io>",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "./assert": {
+      "types": "./dist/assert/index.d.ts",
+      "import": "./dist/assert/index.js"
+    },
+    "./encoding": {
+      "types": "./dist/encoding/index.d.ts",
+      "import": "./dist/encoding/index.js"
+    },
+    "./http": {
+      "types": "./dist/http/index.d.ts",
+      "import": "./dist/http/index.js"
+    },
+    "./intl": {
+      "types": "./dist/intl/index.d.ts",
+      "import": "./dist/intl/index.js"
+    },
+    "./text": {
+      "types": "./dist/text/index.d.ts",
+      "import": "./dist/text/index.js"
+    },
+    "./time": {
+      "types": "./dist/time/index.d.ts",
+      "import": "./dist/time/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup && post-build-exports && pnpm fix",
     "clean": "exec-clean .turbo dist",
@@ -71,19 +62,33 @@
     "fix": "exec-p fix:*",
     "fix:biome": "lint-biome check --write --unsafe .",
     "fix:md": "lint-md --fix",
+    "fix:pkg": "lint-package --fix",
     "lint": "exec-p lint:*",
     "lint:biome": "lint-biome check .",
     "lint:md": "lint-md",
+    "lint:pkg": "lint-package",
     "prepare": "exec-husky",
     "release": "flow-release",
-    "report": "exec-s report:*",
-    "report:unit": "vitest run --reporter html",
+    "report": "vitest run --coverage",
     "test": "exec-s test:*",
     "test:unit": "vitest run",
     "typecheck": "exec-tsc --noEmit",
     "version": "flow-changeset version"
   },
-  "sideEffects": false,
-  "type": "module",
-  "version": "0.5.0"
+  "dependencies": {
+    "intl-parse-accept-language": "1.0.0",
+    "react-router": "7.12.0"
+  },
+  "devDependencies": {
+    "@regardio/dev": "1.11.1",
+    "@total-typescript/ts-reset": "0.6.1",
+    "@types/node": "25.0.3",
+    "@vitest/coverage-v8": "4.0.16",
+    "@vitest/ui": "4.0.16",
+    "tsup": "8.5.1",
+    "vitest": "4.0.16"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }
