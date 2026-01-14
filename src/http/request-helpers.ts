@@ -1,4 +1,4 @@
-export function getCleanUrl(request: Request) {
+export function getCleanUrl(request: Request): string {
   const url = new URL(request.url);
 
   url.searchParams.forEach((_, key) => {

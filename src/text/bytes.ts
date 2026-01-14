@@ -1,4 +1,4 @@
-export function formatBytes(bytes: number, decimals = 2) {
+export function formatBytes(bytes: number, decimals = 2): string {
   if (!+bytes) {
     return '0 Bytes';
   }

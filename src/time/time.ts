@@ -1,6 +1,6 @@
 type RelativeTimeUnit = 'years' | 'months' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds';
 
-export function timeAgo(input: Date | string) {
+export function timeAgo(input: Date | string): string {
   const date = new Date(input);
   const formatter = new Intl.RelativeTimeFormat('en');
 
@@ -25,25 +25,29 @@ export function timeAgo(input: Date | string) {
   return 'Just now';
 }
 
-export const oneWeekFromNow = () => {
+export const oneWeekFromNow = (): Date => {
   const now = new Date();
 
   return new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
 };
 
-export const oneDayFromNow = () => {
+export const oneDayFromNow = (): Date => {
   const now = new Date();
 
   return new Date(now.getTime() + 1 * 24 * 60 * 60 * 1000);
 };
 
-export const oneMinuteFromNow = () => {
+export const oneMinuteFromNow = (): Date => {
   const now = new Date();
 
   return new Date(now.getTime() + 1 * 60 * 1000);
 };
 
-export function friendlyDuration(minutes: number | null, locale: string, short = false) {
+export function friendlyDuration(
+  minutes: number | null,
+  locale: string,
+  short = false,
+): { key: string; vars: Record<string, string | number> } | null {
   const numberFormatter = new Intl.NumberFormat(locale);
 
   if (!minutes) {
@@ -153,6 +157,6 @@ export function friendlyDuration(minutes: number | null, locale: string, short =
   };
 }
 
-export const dateTimeInUnix = (date: number) => {
+export const dateTimeInUnix = (date: number): number => {
   return Math.floor(date / 1000);
 };

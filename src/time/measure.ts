@@ -1,4 +1,7 @@
-export async function measure<Result>(key: string, callback: () => Result | Promise<Result>) {
+export async function measure<Result>(
+  key: string,
+  callback: () => Result | Promise<Result>,
+): Promise<Result> {
   const start = Date.now();
 
   try {

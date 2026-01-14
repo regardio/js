@@ -11,7 +11,7 @@ export function isRouteActive(
   path: string,
   currentPath: string,
   end?: boolean | ((path: string) => boolean) | undefined,
-) {
+): boolean {
   // if the path is the same as the current path, we return true
   if (path === currentPath) {
     return true;
@@ -41,7 +41,7 @@ export function isRouteActive(
  * @param currentRoute - the current route
  * @param depth - how far down should segments be matched?
  */
-export function checkIfRouteIsActive(targetLink: string, currentRoute: string, depth = 1) {
+export function checkIfRouteIsActive(targetLink: string, currentRoute: string, depth = 1): boolean {
   // we remove any eventual query param from the route's URL
   const currentRoutePath = currentRoute.split('?')[0] ?? '';
 
@@ -62,11 +62,11 @@ export function checkIfRouteIsActive(targetLink: string, currentRoute: string, d
   return hasMatchingSegments(targetLink, currentRoutePath, depth);
 }
 
-function splitIntoSegments(href: string) {
+function splitIntoSegments(href: string): string[] {
   return href.split('/').filter(Boolean);
 }
 
-function hasMatchingSegments(targetLink: string, currentRoute: string, depth: number) {
+function hasMatchingSegments(targetLink: string, currentRoute: string, depth: number): boolean {
   const segments = splitIntoSegments(targetLink);
   const matchingSegments = numberOfMatchingSegments(currentRoute, segments);
 
@@ -80,7 +80,7 @@ function hasMatchingSegments(targetLink: string, currentRoute: string, depth: nu
   return matchingSegments > segments.length - (depth - 1);
 }
 
-function numberOfMatchingSegments(href: string, segments: string[]) {
+function numberOfMatchingSegments(href: string, segments: string[]): number {
   let count = 0;
 
   for (const segment of splitIntoSegments(href)) {
@@ -95,6 +95,6 @@ function numberOfMatchingSegments(href: string, segments: string[]) {
   return count;
 }
 
-function isRoot(path: string) {
+function isRoot(path: string): boolean {
   return path === ROOT_PATH;
 }

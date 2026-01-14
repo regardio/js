@@ -1,4 +1,4 @@
-import { defineConfig } from 'tsup';
+import { defineConfig } from 'tsdown';
 
 export default defineConfig({
   clean: true,
@@ -11,11 +11,8 @@ export default defineConfig({
     'src/text/index.ts',
     'src/time/index.ts',
   ],
-  format: ['esm'],
-  minify: false,
+  format: 'esm',
   outDir: 'dist',
-  platform: 'neutral',
   sourcemap: false,
-  splitting: false,
   treeshake: true,
 });

@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.7.0
+
+### Minor Changes
+
+- refactor: move to tsdown, explicit typings
+
 ## 0.6.0
 
 ### Minor Changes
