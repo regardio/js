@@ -3,5 +3,7 @@
   "config": {
     "extends": "@regardio/dev/markdownlint"
   },
+  "frontMatter": "(^---\\s*$[^]*?^---\\s*$)(\\r\\n|\\r|\\n|$)",
+  "globs": ["**/*.md", "**/*.mdoc", "**/*.mdx"],
   "ignores": [".changeset/**", "**/node_modules/**", "**/dist/**"]
 }
