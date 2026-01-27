@@ -77,16 +77,16 @@
   },
   "dependencies": {
     "intl-parse-accept-language": "1.0.0",
-    "react-router": "7.12.0"
+    "react-router": "7.13.0"
   },
   "devDependencies": {
     "@regardio/dev": "1.13.1",
     "@total-typescript/ts-reset": "0.6.1",
-    "@types/node": "25.0.9",
-    "@vitest/coverage-v8": "4.0.17",
-    "@vitest/ui": "4.0.17",
-    "tsdown": "0.20.0-beta.3",
-    "vitest": "4.0.17"
+    "@types/node": "25.0.10",
+    "@vitest/coverage-v8": "4.0.18",
+    "@vitest/ui": "4.0.18",
+    "tsdown": "0.20.1",
+    "vitest": "4.0.18"
   },
   "publishConfig": {
     "access": "public"
