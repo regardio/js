@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.7.2
+
+### Patch Changes
+
+- dependencies updates
+
 ## 0.7.1
 
 ### Patch Changes
