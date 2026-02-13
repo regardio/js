@@ -82,7 +82,7 @@
   "devDependencies": {
     "@regardio/dev": "1.13.3",
     "@total-typescript/ts-reset": "0.6.1",
-    "@types/node": "25.2.2",
+    "@types/node": "25.2.3",
     "@vitest/coverage-v8": "4.0.18",
     "@vitest/ui": "4.0.18",
     "tsdown": "0.20.3",
