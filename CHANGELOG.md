@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.7.3
+
+### Patch Changes
+
+- chore: dependencies and formatting
+
 ## 0.7.2
 
 ### Patch Changes
