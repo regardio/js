@@ -3,41 +3,16 @@ import type { Cookie, SessionStorage } from 'react-router';
 
 export interface LanguageDetectorOption {
   /**
-   * Define the list of supported languages, this is used to determine if one of
-   * the languages requested by the user is supported by the application.
-   * This should be be same as the supportedLngs in the i18next options.
+   * If you want to use a cookie to store the user preferred language, you can
+   * pass the Cookie object here.
    */
-  supportedLanguages: string[];
+  cookie?: Cookie;
   /**
    * Define the fallback language that it's going to be used in the case user
    * expected language is not supported.
    * This should be be same as the fallbackLng in the i18next options.
    */
   fallbackLanguage: string;
-  /**
-   * If you want to use a cookie to store the user preferred language, you can
-   * pass the Cookie object here.
-   */
-  cookie?: Cookie;
-  /**
-   * If you want to use a session to store the user preferred language, you can
-   * pass the SessionStorage object here.
-   * When this is not defined, getting the locale will ignore the session.
-   */
-  sessionStorage?: SessionStorage;
-  /**
-   * If defined a sessionStorage and want to change the default key used to
-   * store the user preferred language, you can pass the key here.
-   * @default "lng"
-   */
-  sessionKey?: string;
-  /**
-   * If you want to use search parameters for language detection and want to
-   * change the default key used to for the parameter name,
-   * you can pass the key here.
-   * @default "lng"
-   */
-  searchParamKey?: string;
   /**
    * The order the library will use to detect the user preferred language.
    * By default the order is
@@ -49,6 +24,31 @@ export interface LanguageDetectorOption {
    * And finally the fallback language.
    */
   order?: Array<'urlPath' | 'searchParams' | 'cookie' | 'session' | 'header'>;
+  /**
+   * If you want to use search parameters for language detection and want to
+   * change the default key used to for the parameter name,
+   * you can pass the key here.
+   * @default "lng"
+   */
+  searchParamKey?: string;
+  /**
+   * If defined a sessionStorage and want to change the default key used to
+   * store the user preferred language, you can pass the key here.
+   * @default "lng"
+   */
+  sessionKey?: string;
+  /**
+   * If you want to use a session to store the user preferred language, you can
+   * pass the SessionStorage object here.
+   * When this is not defined, getting the locale will ignore the session.
+   */
+  sessionStorage?: SessionStorage;
+  /**
+   * Define the list of supported languages, this is used to determine if one of
+   * the languages requested by the user is supported by the application.
+   * This should be be same as the supportedLngs in the i18next options.
+   */
+  supportedLanguages: string[];
 }
 
 export interface LanguageDetectorLinguiOptions {

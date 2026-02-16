@@ -80,7 +80,7 @@
     "react-router": "7.13.0"
   },
   "devDependencies": {
-    "@regardio/dev": "1.13.3",
+    "@regardio/dev": "1.13.5",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/node": "25.2.3",
     "@vitest/coverage-v8": "4.0.18",

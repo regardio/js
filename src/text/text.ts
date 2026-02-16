@@ -2,14 +2,14 @@
  * Quote style configuration for a locale
  */
 interface QuoteStyle {
-  /** Opening primary quote (for double quotes) */
-  open: string;
   /** Closing primary quote (for double quotes) */
   close: string;
-  /** Opening secondary quote (for single quotes) */
-  openSingle: string;
   /** Closing secondary quote (for single quotes) */
   closeSingle: string;
+  /** Opening primary quote (for double quotes) */
+  open: string;
+  /** Opening secondary quote (for single quotes) */
+  openSingle: string;
 }
 
 /**
