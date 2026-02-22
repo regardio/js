@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
   "name": "@regardio/js",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "private": false,
   "description": "Regardio JavaScript utilities",
   "keywords": [
@@ -28,42 +28,40 @@
   "type": "module",
   "exports": {
     "./assert": {
-      "types": "./dist/assert/index.d.mts",
-      "import": "./dist/assert/index.mjs"
+      "import": "./dist/assert/index.mjs",
+      "types": "./dist/assert/index.d.mts"
     },
     "./encoding": {
-      "types": "./dist/encoding/index.d.mts",
-      "import": "./dist/encoding/index.mjs"
+      "import": "./dist/encoding/index.mjs",
+      "types": "./dist/encoding/index.d.mts"
     },
     "./http": {
-      "types": "./dist/http/index.d.mts",
-      "import": "./dist/http/index.mjs"
+      "import": "./dist/http/index.mjs",
+      "types": "./dist/http/index.d.mts"
     },
     "./intl": {
-      "types": "./dist/intl/index.d.mts",
-      "import": "./dist/intl/index.mjs"
+      "import": "./dist/intl/index.mjs",
+      "types": "./dist/intl/index.d.mts"
     },
     "./text": {
-      "types": "./dist/text/index.d.mts",
-      "import": "./dist/text/index.mjs"
+      "import": "./dist/text/index.mjs",
+      "types": "./dist/text/index.d.mts"
     },
     "./time": {
-      "types": "./dist/time/index.d.mts",
-      "import": "./dist/time/index.mjs"
+      "import": "./dist/time/index.mjs",
+      "types": "./dist/time/index.d.mts"
     }
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
-    "build": "tsdown && pnpm fix",
+    "build": "exec-s tsdown fix",
     "clean": "exec-clean .turbo dist",
     "dev": "tsdown --watch",
-    "fix": "exec-p fix:*",
+    "fix": "exec-s fix:pkg fix:md fix:biome",
     "fix:biome": "lint-biome check --write --unsafe .",
     "fix:md": "lint-md --fix",
     "fix:pkg": "lint-package --fix",
-    "lint": "exec-p lint:*",
+    "lint": "exec-s lint:md lint:biome",
     "lint:biome": "lint-biome check .",
     "lint:md": "lint-md",
     "lint:pkg": "lint-package",
@@ -72,6 +70,7 @@
     "report": "vitest run --coverage",
     "test": "exec-s test:*",
     "test:unit": "vitest run",
+    "tsdown": "tsdown",
     "typecheck": "exec-tsc --noEmit",
     "version": "flow-changeset version"
   },
@@ -80,7 +79,7 @@
     "react-router": "7.13.0"
   },
   "devDependencies": {
-    "@regardio/dev": "1.13.6",
+    "@regardio/dev": "1.13.8",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/node": "25.3.0",
     "@vitest/coverage-v8": "4.0.18",
