@@ -1,5 +1,11 @@
 # @regardio/js
 
+## 0.7.5
+
+### Patch Changes
+
+- fix: formatting and linting
+
 ## 0.7.4
 
 ### Patch Changes
