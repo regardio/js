@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
   "name": "@regardio/js",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "private": false,
   "description": "Regardio JavaScript utilities",
   "keywords": [
@@ -76,7 +76,7 @@
   },
   "dependencies": {
     "intl-parse-accept-language": "1.0.0",
-    "react-router": "7.13.0"
+    "react-router": "7.13.1"
   },
   "devDependencies": {
     "@regardio/dev": "1.13.8",
