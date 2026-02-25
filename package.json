@@ -54,32 +54,33 @@
   },
   "files": ["dist"],
   "scripts": {
-    "build": "exec-s tsdown fix",
+    "build": "tsdown",
     "clean": "exec-clean .turbo dist",
     "dev": "tsdown --watch",
     "fix": "exec-s fix:pkg fix:md fix:biome",
     "fix:biome": "lint-biome check --write --unsafe .",
     "fix:md": "lint-md --fix",
     "fix:pkg": "lint-package --fix",
+    "flow:hotfix": "flow-hotfix",
+    "flow:release": "flow-release",
+    "flow:ship": "flow-ship",
     "lint": "exec-s lint:md lint:biome",
     "lint:biome": "lint-biome check .",
     "lint:md": "lint-md",
     "lint:pkg": "lint-package",
     "prepare": "exec-husky",
-    "release": "flow-release",
     "report": "vitest run --coverage",
     "test": "exec-s test:*",
     "test:unit": "vitest run",
     "tsdown": "tsdown",
-    "typecheck": "exec-tsc --noEmit",
-    "version": "flow-changeset version"
+    "typecheck": "exec-tsc --noEmit"
   },
   "dependencies": {
     "intl-parse-accept-language": "1.0.0",
     "react-router": "7.13.1"
   },
   "devDependencies": {
-    "@regardio/dev": "1.13.8",
+    "@regardio/dev": "1.14.3",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/node": "25.3.0",
     "@vitest/coverage-v8": "4.0.18",
