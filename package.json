@@ -52,9 +52,7 @@
       "types": "./dist/time/index.d.mts"
     }
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "tsdown",
     "clean": "exec-clean .turbo dist",
