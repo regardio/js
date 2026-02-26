@@ -1,5 +1,11 @@
 # @regardio/js
 
+## [0.7.8] - 2026-02-26
+
+- chore(staging): auto-fix formatting
+- refactor: use flow tasks, remove changeset, update dependencies
+- chore: add private package guard to release.yml
+
 ## [0.7.7] - 2026-02-26
 
 - chore: deps
