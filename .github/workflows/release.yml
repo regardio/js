@@ -43,22 +43,28 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          IS_PRIVATE=$(node -p "require('./package.json').private ?? false")
           PACKAGE_NAME=$(node -p "require('./package.json').name")
           CURRENT_VERSION=$(node -p "require('./package.json').version")
-          PUBLISHED_VERSION=$(npm view "$PACKAGE_NAME" version 2>/dev/null || echo 'NOT_FOUND')
           echo "package_name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
           echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
-          if [ "$PUBLISHED_VERSION" = "NOT_FOUND" ]; then
-            echo "::error::Package $PACKAGE_NAME not found on npm. First publish must be done locally."
-            echo "::error::Run: pnpm build && npm publish --access public"
-            exit 1
-          elif [ "$PUBLISHED_VERSION" != "$CURRENT_VERSION" ]; then
-            echo "Publishing $PACKAGE_NAME@$CURRENT_VERSION (npm has $PUBLISHED_VERSION)"
-            npm publish --access public --provenance
-            echo "published=true" >> $GITHUB_OUTPUT
-          else
-            echo "Version $CURRENT_VERSION already published, skipping"
+          if [ "$IS_PRIVATE" = "true" ]; then
+            echo "Package $PACKAGE_NAME is private, skipping npm publish"
             echo "published=false" >> $GITHUB_OUTPUT
+          else
+            PUBLISHED_VERSION=$(npm view "$PACKAGE_NAME" version 2>/dev/null || echo 'NOT_FOUND')
+            if [ "$PUBLISHED_VERSION" = "NOT_FOUND" ]; then
+              echo "::error::Package $PACKAGE_NAME not found on npm. First publish must be done locally."
+              echo "::error::Run: pnpm build && npm publish --access public"
+              exit 1
+            elif [ "$PUBLISHED_VERSION" != "$CURRENT_VERSION" ]; then
+              echo "Publishing $PACKAGE_NAME@$CURRENT_VERSION (npm has $PUBLISHED_VERSION)"
+              npm publish --access public --provenance
+              echo "published=true" >> $GITHUB_OUTPUT
+            else
+              echo "Version $CURRENT_VERSION already published, skipping"
+              echo "published=false" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Extract changelog entry
