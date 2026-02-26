@@ -1,5 +1,10 @@
 # @regardio/js
 
+## [0.7.7] - 2026-02-26
+
+- chore: deps
+- chore: flow
+
 ## 0.7.6
 
 ### Patch Changes
