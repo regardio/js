@@ -52,7 +52,9 @@
       "types": "./dist/time/index.d.mts"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsdown",
     "clean": "exec-clean .turbo dist",
@@ -80,15 +82,12 @@
     "react-router": "7.13.1"
   },
   "devDependencies": {
-    "@regardio/dev": "1.14.3",
+    "@regardio/dev": "1.15.1",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/node": "25.3.1",
     "@vitest/coverage-v8": "4.0.18",
     "@vitest/ui": "4.0.18",
     "tsdown": "0.20.3",
     "vitest": "4.0.18"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

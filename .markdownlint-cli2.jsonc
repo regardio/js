@@ -5,5 +5,5 @@
   },
   "frontMatter": "(^---\\s*$[^]*?^---\\s*$)(\\r\\n|\\r|\\n|$)",
   "globs": ["**/*.md", "**/*.mdoc", "**/*.mdx"],
-  "ignores": [".changeset/**", "**/dist/**", "**/node_modules/**", "node_modules/**"]
+  "ignores": ["**/dist/**", "**/node_modules/**", "node_modules/**"]
 }
