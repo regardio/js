@@ -1,5 +1,9 @@
 # @regardio/js
 
+## [0.7.9] - 2026-02-28
+
+- chore: deps
+
 ## [0.7.8] - 2026-02-26
 
 - chore(staging): auto-fix formatting
