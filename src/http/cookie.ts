@@ -134,20 +134,6 @@ export async function getCookie(name: string): Promise<string | null> {
 }
 
 /**
- * Update a cookie (alias for setCookie for clarity)
- * @param name - The name of the cookie
- * @param value - The new value to set
- * @param options - Cookie options
- */
-export function updateCookie(
-  name: string,
-  value: string,
-  options: CookieOptions = {},
-): Promise<void> {
-  return setCookie(name, value, options);
-}
-
-/**
  * Delete a cookie by name using Cookie Store API with document.cookie fallback
  * @param name - The name of the cookie to delete
  * @param options - Cookie options (path and domain should match the original cookie)
@@ -172,6 +158,86 @@ export async function deleteCookie(
       const expires = new Date(0);
       setViaDocumentCookie(name, '', { ...options, expires });
     }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(`Failed to delete cookie '${name}':`, error.message);
+    } else {
+      console.error(`Failed to delete cookie '${name}': Unknown error`);
+    }
+  }
+}
+
+/**
+ * Set a cookie synchronously using document.cookie (client-side only)
+ * @param name - The name of the cookie
+ * @param value - The value to set
+ * @param options - Cookie options
+ * @returns void
+ * @note This function is synchronous and only works in browser environments
+ */
+export function setCookieSync(
+  name: string,
+  value: string,
+  options: CookieOptions = {},
+): void {
+  if (typeof window === 'undefined') {
+    console.warn('Cannot set cookie on server side');
+    return;
+  }
+
+  try {
+    setViaDocumentCookie(name, value, options);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(`Failed to set cookie '${name}':`, error.message);
+    } else {
+      console.error(`Failed to set cookie '${name}': Unknown error`);
+    }
+  }
+}
+
+/**
+ * Get a cookie by name synchronously using document.cookie (client-side only)
+ * @param name - The name of the cookie to get
+ * @returns The cookie value or null if not found
+ * @note This function is synchronous and only works in browser environments
+ */
+export function getCookieSync(name: string): string | null {
+  if (typeof window === 'undefined') {
+    console.warn('Cannot get cookie on server side');
+    return null;
+  }
+
+  try {
+    return getViaDocumentCookie(name);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(`Failed to get cookie '${name}':`, error.message);
+    } else {
+      console.error(`Failed to get cookie '${name}': Unknown error`);
+    }
+    return null;
+  }
+}
+
+/**
+ * Delete a cookie by name synchronously using document.cookie (client-side only)
+ * @param name - The name of the cookie to delete
+ * @param options - Cookie options (path and domain should match the original cookie)
+ * @note This function is synchronous and only works in browser environments
+ */
+export function deleteCookieSync(
+  name: string,
+  options: Pick<CookieOptions, 'path' | 'domain'> = {},
+): void {
+  if (typeof window === 'undefined') {
+    console.warn('Cannot delete cookie on server side');
+    return;
+  }
+
+  try {
+    const expires = new Date(0);
+    setViaDocumentCookie(name, '', { ...options, expires });
   } catch (error) {
     if (error instanceof Error) {
       console.error(`Failed to delete cookie '${name}':`, error.message);

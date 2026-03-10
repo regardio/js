@@ -1,5 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { deleteCookie, getCookie, setCookie } from './cookie';
+import {
+  deleteCookie,
+  deleteCookieSync,
+  getCookie,
+  getCookieSync,
+  setCookie,
+  setCookieSync,
+} from './cookie';
 
 describe('setCookie', () => {
   beforeEach(() => {
@@ -403,6 +410,219 @@ describe('deleteCookie', () => {
 
     expect(consoleErrorSpy).toHaveBeenCalledWith("Failed to delete cookie 'test': Unknown error");
 
+    consoleErrorSpy.mockRestore();
+  });
+});
+
+describe('setCookieSync', () => {
+  beforeEach(() => {
+    vi.stubGlobal('window', {});
+    vi.stubGlobal('document', { cookie: '' });
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('should set a simple cookie synchronously', () => {
+    let cookieValue = '';
+    vi.stubGlobal('document', {
+      get cookie() {
+        return cookieValue;
+      },
+      set cookie(value: string) {
+        cookieValue = value;
+      },
+    });
+
+    setCookieSync('test', 'value');
+
+    expect(cookieValue).toBe('test=value');
+  });
+
+  it('should encode special characters', () => {
+    let cookieValue = '';
+    vi.stubGlobal('document', {
+      get cookie() {
+        return cookieValue;
+      },
+      set cookie(value: string) {
+        cookieValue = value;
+      },
+    });
+
+    setCookieSync('test', 'hello world');
+
+    expect(cookieValue).toBe('test=hello%20world');
+  });
+
+  it('should set cookie with all options', () => {
+    let cookieValue = '';
+    vi.stubGlobal('document', {
+      get cookie() {
+        return cookieValue;
+      },
+      set cookie(value: string) {
+        cookieValue = value;
+      },
+    });
+
+    const expires = new Date('2025-01-01T00:00:00Z');
+    setCookieSync('test', 'value', {
+      domain: '.example.com',
+      expires,
+      path: '/',
+      sameSite: 'strict',
+      secure: true,
+    });
+
+    expect(cookieValue).toContain('test=value');
+    expect(cookieValue).toContain('expires=');
+    expect(cookieValue).toContain('path=/');
+    expect(cookieValue).toContain('SameSite=strict');
+    expect(cookieValue).toContain('Secure');
+    expect(cookieValue).toContain('domain=.example.com');
+  });
+
+  it('should warn when called on server side', () => {
+    vi.unstubAllGlobals();
+    const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    setCookieSync('test', 'value');
+
+    expect(consoleSpy).toHaveBeenCalledWith('Cannot set cookie on server side');
+    consoleSpy.mockRestore();
+  });
+
+  it('should handle errors gracefully', () => {
+    vi.stubGlobal('window', {});
+    vi.stubGlobal('document', {
+      get cookie() {
+        throw new Error('Cookie error');
+      },
+      set cookie(_value: string) {
+        throw new Error('Cookie error');
+      },
+    });
+
+    const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    setCookieSync('test', 'value');
+
+    expect(consoleErrorSpy).toHaveBeenCalledWith("Failed to set cookie 'test':", 'Cookie error');
+    consoleErrorSpy.mockRestore();
+  });
+});
+
+describe('getCookieSync', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('should get a cookie value synchronously', () => {
+    vi.stubGlobal('window', {});
+    vi.stubGlobal('document', { cookie: 'test=value' });
+
+    expect(getCookieSync('test')).toBe('value');
+  });
+
+  it('should return null for non-existent cookie', () => {
+    vi.stubGlobal('window', {});
+    vi.stubGlobal('document', { cookie: 'other=value' });
+
+    expect(getCookieSync('test')).toBeNull();
+  });
+
+  it('should decode URL-encoded values', () => {
+    vi.stubGlobal('window', {});
+    vi.stubGlobal('document', { cookie: 'test=hello%20world' });
+
+    expect(getCookieSync('test')).toBe('hello world');
+  });
+
+  it('should handle multiple cookies', () => {
+    vi.stubGlobal('window', {});
+    vi.stubGlobal('document', { cookie: 'first=1; test=value; last=3' });
+
+    expect(getCookieSync('test')).toBe('value');
+  });
+
+  it('should warn when called on server side', () => {
+    const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    expect(getCookieSync('test')).toBeNull();
+    expect(consoleSpy).toHaveBeenCalledWith('Cannot get cookie on server side');
+
+    consoleSpy.mockRestore();
+  });
+
+  it('should handle errors gracefully', () => {
+    vi.stubGlobal('window', {});
+    vi.stubGlobal('document', {
+      get cookie() {
+        throw new Error('Cookie error');
+      },
+    });
+
+    const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    expect(getCookieSync('test')).toBeNull();
+    expect(consoleErrorSpy).toHaveBeenCalledWith("Failed to get cookie 'test':", 'Cookie error');
+
+    consoleErrorSpy.mockRestore();
+  });
+});
+
+describe('deleteCookieSync', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('should delete cookie synchronously', () => {
+    let cookieValue = '';
+    vi.stubGlobal('window', {});
+    vi.stubGlobal('document', {
+      get cookie() {
+        return cookieValue;
+      },
+      set cookie(value: string) {
+        cookieValue = value;
+      },
+    });
+
+    deleteCookieSync('test', { path: '/' });
+
+    expect(cookieValue).toContain('test=');
+    expect(cookieValue).toContain('expires=Thu, 01 Jan 1970');
+    expect(cookieValue).toContain('path=/');
+  });
+
+  it('should warn when called on server side', () => {
+    const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    deleteCookieSync('test');
+
+    expect(consoleSpy).toHaveBeenCalledWith('Cannot delete cookie on server side');
+
+    consoleSpy.mockRestore();
+  });
+
+  it('should handle errors gracefully', () => {
+    vi.stubGlobal('window', {});
+    vi.stubGlobal('document', {
+      get cookie() {
+        throw new Error('Cookie error');
+      },
+      set cookie(_value: string) {
+        throw new Error('Cookie error');
+      },
+    });
+
+    const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    deleteCookieSync('test');
+
+    expect(consoleErrorSpy).toHaveBeenCalledWith("Failed to delete cookie 'test':", 'Cookie error');
     consoleErrorSpy.mockRestore();
   });
 });

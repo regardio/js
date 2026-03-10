@@ -1,4 +1,12 @@
-export { type CookieOptions, deleteCookie, getCookie, setCookie, updateCookie } from './cookie';
+export {
+  type CookieOptions,
+  deleteCookie,
+  deleteCookieSync,
+  getCookie,
+  getCookieSync,
+  setCookie,
+  setCookieSync,
+} from './cookie';
 
 export {
   type CookieSerializeOptions,
