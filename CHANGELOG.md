@@ -1,5 +1,9 @@
 # @regardio/js
 
+## [0.8.1] - 2026-03-10
+
+- feat: sync/async cookie handling
+
 ## [0.8.0] - 2026-03-10
 
 - feat: client- and server-side cookie handlers
