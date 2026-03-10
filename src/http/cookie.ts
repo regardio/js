@@ -175,11 +175,7 @@ export async function deleteCookie(
  * @returns void
  * @note This function is synchronous and only works in browser environments
  */
-export function setCookieSync(
-  name: string,
-  value: string,
-  options: CookieOptions = {},
-): void {
+export function setCookieSync(name: string, value: string, options: CookieOptions = {}): void {
   if (typeof window === 'undefined') {
     console.warn('Cannot set cookie on server side');
     return;
