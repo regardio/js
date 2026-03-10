@@ -1,5 +1,12 @@
 # @regardio/js
 
+## [0.8.0] - 2026-03-10
+
+- feat: client- and server-side cookie handlers
+- chore: deps
+- chore: deps
+- chore: deps
+
 ## [0.7.9] - 2026-02-28
 
 - chore: deps
