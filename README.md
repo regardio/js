@@ -74,15 +74,40 @@ HTTP, cookie, and routing utilities.
 
 ```ts
 import {
-  getCookieValue,
-  setCookieValue,
+  // Client-side cookies (Cookie Store API + fallback)
+  getCookie,
+  setCookie,
+  updateCookie,
+  deleteCookie,
+  // Server-side cookies (Request/Response)
+  parseCookies,
+  serializeCookie,
+  getCookieFromRequest,
+  setCookieOnResponse,
+  deleteCookieFromResponse,
+  getAllCookiesFromRequest,
+  // HTTP utilities
   createDomain,
   getCleanUrl,
   isRouteActive,
 } from '@regardio/js/http';
 
-setCookieValue('theme', 'dark', { path: '/', secure: true });
-const theme = getCookieValue('theme');
+// Client-side: Cookie Store API with document.cookie fallback
+await setCookie('theme', 'dark', { path: '/', secure: true, sameSite: 'lax' });
+const theme = await getCookie('theme');
+await updateCookie('theme', 'light', { path: '/' });
+await deleteCookie('theme', { path: '/' });
+
+// Server-side: Request/Response cookie handling
+const session = getCookieFromRequest(request, 'session');
+const allCookies = getAllCookiesFromRequest(request);
+const response = setCookieOnResponse(
+  new Response('OK'),
+  'session',
+  'abc123',
+  { httpOnly: true, secure: true, sameSite: 'lax' }
+);
+
 const domain = createDomain(request); // "https://example.com"
 isRouteActive('/account', '/account/settings', false); // true
 ```

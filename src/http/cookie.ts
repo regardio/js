@@ -1,25 +1,16 @@
-/**
- * Helper function to set cookies in a more controlled way
- * @param name - The name of the cookie
- * @param value - The value to set
- * @param options - Cookie options
- */
-export function setCookieValue(
-  name: string,
-  value: string,
-  options: {
-    expires?: Date;
-    path?: string;
-    sameSite?: string;
-    secure?: boolean;
-    domain?: string;
-  } = {},
-): void {
-  if (typeof window === 'undefined') {
-    console.warn('Cannot set cookie on server side');
-    return;
-  }
+export interface CookieOptions {
+  domain?: string;
+  expires?: Date;
+  path?: string;
+  sameSite?: 'strict' | 'lax' | 'none';
+  secure?: boolean;
+}
 
+function hasCookieStore(): boolean {
+  return typeof window !== 'undefined' && 'cookieStore' in window;
+}
+
+function buildCookieString(name: string, value: string, options: CookieOptions): string {
   let cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
 
   if (options.expires) {
@@ -42,10 +33,71 @@ export function setCookieValue(
     cookieString += `; domain=${options.domain}`;
   }
 
-  // Use try-catch to handle potential SecurityError in some contexts
+  return cookieString;
+}
+
+function setViaCookieStore(name: string, value: string, options: CookieOptions): Promise<void> {
+  const cookieInit: CookieInit = {
+    domain: options.domain,
+    name,
+    path: options.path,
+    sameSite: options.sameSite,
+    value,
+  };
+
+  if (options.expires) {
+    cookieInit.expires = options.expires.getTime();
+  }
+
+  return window.cookieStore.set(cookieInit);
+}
+
+function setViaDocumentCookie(name: string, value: string, options: CookieOptions): void {
+  const cookieString = buildCookieString(name, value, options);
+
+  // biome-ignore lint/suspicious/noDocumentCookie: fallback for browsers without Cookie Store API
+  document.cookie = cookieString;
+}
+
+async function getViaCookieStore(name: string): Promise<string | null> {
+  const cookie = await window.cookieStore.get(name);
+  return cookie?.value ?? null;
+}
+
+function getViaDocumentCookie(name: string): string | null {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+
+  if (parts.length === 2) {
+    const cookieValue = parts.pop()?.split(';').shift();
+    return cookieValue ? decodeURIComponent(cookieValue) : null;
+  }
+
+  return null;
+}
+
+/**
+ * Set a cookie using Cookie Store API with document.cookie fallback
+ * @param name - The name of the cookie
+ * @param value - The value to set
+ * @param options - Cookie options
+ */
+export async function setCookie(
+  name: string,
+  value: string,
+  options: CookieOptions = {},
+): Promise<void> {
+  if (typeof window === 'undefined') {
+    console.warn('Cannot set cookie on server side');
+    return;
+  }
+
   try {
-    // biome-ignore lint/suspicious/noDocumentCookie: @TODO let's look into this later
-    document.cookie = cookieString;
+    if (hasCookieStore()) {
+      await setViaCookieStore(name, value, options);
+    } else {
+      setViaDocumentCookie(name, value, options);
+    }
   } catch (error) {
     if (error instanceof Error) {
       console.error(`Failed to set cookie '${name}':`, error.message);
@@ -56,23 +108,75 @@ export function setCookieValue(
 }
 
 /**
- * Get a cookie value by name
+ * Get a cookie by name using Cookie Store API with document.cookie fallback
  * @param name - The name of the cookie to get
  * @returns The cookie value or null if not found
  */
-export function getCookieValue(name: string): string | null {
+export async function getCookie(name: string): Promise<string | null> {
   if (typeof window === 'undefined') {
     console.warn('Cannot get cookie on server side');
     return null;
   }
 
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
+  try {
+    if (hasCookieStore()) {
+      return await getViaCookieStore(name);
+    }
+    return getViaDocumentCookie(name);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(`Failed to get cookie '${name}':`, error.message);
+    } else {
+      console.error(`Failed to get cookie '${name}': Unknown error`);
+    }
+    return null;
+  }
+}
 
-  if (parts.length === 2) {
-    const cookieValue = parts.pop()?.split(';').shift();
-    return cookieValue ? decodeURIComponent(cookieValue) : null;
+/**
+ * Update a cookie (alias for setCookie for clarity)
+ * @param name - The name of the cookie
+ * @param value - The new value to set
+ * @param options - Cookie options
+ */
+export function updateCookie(
+  name: string,
+  value: string,
+  options: CookieOptions = {},
+): Promise<void> {
+  return setCookie(name, value, options);
+}
+
+/**
+ * Delete a cookie by name using Cookie Store API with document.cookie fallback
+ * @param name - The name of the cookie to delete
+ * @param options - Cookie options (path and domain should match the original cookie)
+ */
+export async function deleteCookie(
+  name: string,
+  options: Pick<CookieOptions, 'path' | 'domain'> = {},
+): Promise<void> {
+  if (typeof window === 'undefined') {
+    console.warn('Cannot delete cookie on server side');
+    return;
   }
 
-  return null;
+  try {
+    if (hasCookieStore()) {
+      await window.cookieStore.delete({
+        domain: options.domain,
+        name,
+        path: options.path,
+      });
+    } else {
+      const expires = new Date(0);
+      setViaDocumentCookie(name, '', { ...options, expires });
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(`Failed to delete cookie '${name}':`, error.message);
+    } else {
+      console.error(`Failed to delete cookie '${name}': Unknown error`);
+    }
+  }
 }

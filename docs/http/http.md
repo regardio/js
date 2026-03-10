@@ -1,49 +1,44 @@
 # @regardio/js/http
 
-HTTP, cookie, and routing utilities.
+HTTP, cookie, and routing utilities for both client and server environments.
 
-## Installation
+## Quick Start
 
 ```ts
 import {
-  setCookieValue,
-  getCookieValue,
+  // Client-side cookies
+  getCookie,
+  setCookie,
+  updateCookie,
+  deleteCookie,
+  // Server-side cookies
+  getCookieFromRequest,
+  setCookieOnResponse,
+  parseCookies,
+  serializeCookie,
+  // HTTP utilities
   createDomain,
   getCleanUrl,
   isRouteActive,
-  checkIfRouteIsActive,
 } from '@regardio/js/http';
 ```
 
-## Functions
+## Documentation
 
-### setCookieValue
+### Cookies
 
-Set a cookie in the browser.
+- **[Client-Side Cookies](./cookies-client.md)** - Browser cookie management using Cookie Store API with `document.cookie` fallback
+  - `getCookie()`, `setCookie()`, `updateCookie()`, `deleteCookie()`
+  - Promise-based API
+  - Works in all browsers
 
-```ts
-setCookieValue('theme', 'dark');
+- **[Server-Side Cookies](./cookies-server.md)** - Request/Response cookie handling for server frameworks
+  - `getCookieFromRequest()`, `setCookieOnResponse()`, `deleteCookieFromResponse()`
+  - `parseCookies()`, `serializeCookie()`, `getAllCookiesFromRequest()`
+  - Framework-agnostic (Remix, React Router, Hono, Next.js, etc.)
+  - Includes security best practices and examples
 
-setCookieValue('session', 'abc123', {
-  expires: new Date('2025-01-01'),
-  path: '/',
-  sameSite: 'Strict',
-  secure: true,
-  domain: '.example.com',
-});
-```
-
-**Note:** Only works in browser environments. Logs a warning if called server-side.
-
-### getCookieValue
-
-Get a cookie value by name.
-
-```ts
-const theme = getCookieValue('theme'); // 'dark' or null
-```
-
-**Note:** Only works in browser environments. Returns `null` if called server-side.
+## HTTP Utilities
 
 ### createDomain
 
