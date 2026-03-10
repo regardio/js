@@ -74,11 +74,14 @@ HTTP, cookie, and routing utilities.
 
 ```ts
 import {
-  // Client-side cookies (Cookie Store API + fallback)
+  // Client-side cookies (async - Cookie Store API + fallback)
   getCookie,
   setCookie,
-  updateCookie,
   deleteCookie,
+  // Client-side cookies (sync - document.cookie only)
+  getCookieSync,
+  setCookieSync,
+  deleteCookieSync,
   // Server-side cookies (Request/Response)
   parseCookies,
   serializeCookie,
@@ -92,11 +95,17 @@ import {
   isRouteActive,
 } from '@regardio/js/http';
 
-// Client-side: Cookie Store API with document.cookie fallback
+// Client-side async: Cookie Store API with document.cookie fallback
 await setCookie('theme', 'dark', { path: '/', secure: true, sameSite: 'lax' });
 const theme = await getCookie('theme');
-await updateCookie('theme', 'light', { path: '/' });
+await setCookie('theme', 'light', { path: '/' }); // Update by setting again
 await deleteCookie('theme', { path: '/' });
+
+// Client-side sync: document.cookie only (no async/await needed)
+setCookieSync('theme', 'dark', { path: '/', secure: true, sameSite: 'lax' });
+const themeSync = getCookieSync('theme');
+setCookieSync('theme', 'light', { path: '/' }); // Update by setting again
+deleteCookieSync('theme', { path: '/' });
 
 // Server-side: Request/Response cookie handling
 const session = getCookieFromRequest(request, 'session');
