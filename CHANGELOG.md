@@ -1,5 +1,9 @@
 # @regardio/js
 
+## [0.9.1] - 2026-03-18
+
+- ci: dependency installation in workflow
+
 ## [0.9.0] - 2026-03-18
 
 - chore: deps
