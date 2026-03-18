@@ -1,5 +1,9 @@
 # @regardio/js
 
+## [0.9.2] - 2026-03-18
+
+- ci: workflow replacing workspace dependencies
+
 ## [0.9.1] - 2026-03-18
 
 - ci: dependency installation in workflow
