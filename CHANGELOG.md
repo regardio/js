@@ -1,5 +1,9 @@
 # @regardio/js
 
+## [0.9.0] - 2026-03-18
+
+- chore: deps
+
 ## [0.8.3] - 2026-03-17
 
 - chore: deps
