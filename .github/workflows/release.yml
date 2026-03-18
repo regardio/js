@@ -32,10 +32,31 @@ jobs:
       - name: Update npm for OIDC support
         run: npm install -g npm@latest
 
-      - name: Install dependencies
+      - name: Replace workspace dependencies with npm versions
         run: |
-          pnpm install --prod --no-frozen-lockfile
-          pnpm add -D tsdown
+          node -e "
+          const fs = require('fs');
+          const { execSync } = require('child_process');
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          if (pkg.devDependencies) {
+            Object.keys(pkg.devDependencies).forEach(key => {
+              if (pkg.devDependencies[key].startsWith('workspace:')) {
+                try {
+                  const version = execSync(\`npm view \${key} version\`, { encoding: 'utf8' }).trim();
+                  pkg.devDependencies[key] = \`^\${version}\`;
+                  console.log(\`Replaced \${key}@workspace:* with ^\${version}\`);
+                } catch (e) {
+                  console.error(\`Error: Could not find \${key} on npm. Publish it first.\`);
+                  process.exit(1);
+                }
+              }
+            });
+          }
+          fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+          "
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build
         run: pnpm build
