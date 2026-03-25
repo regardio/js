@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 set -eu
 echo "Use Conventional Commits format: type(scope?): message"
 echo "Valid types: build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test, BREAKING CHANGE"
