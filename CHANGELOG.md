@@ -1,5 +1,12 @@
 # @regardio/js
 
+## [0.9.3] - 2026-03-25
+
+- chore: deps
+- feat: sanitize cookies
+- chore: deps
+- chore: deps
+
 ## [0.9.2] - 2026-03-18
 
 - ci: workflow replacing workspace dependencies
