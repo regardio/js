@@ -22,7 +22,14 @@ export function parseCookies(cookieHeader: string | null | undefined): Record<st
   }
 
   try {
-    return parse(cookieHeader);
+    const parsed = parse(cookieHeader);
+    const result: Record<string, string> = {};
+    for (const [key, value] of Object.entries(parsed)) {
+      if (value !== undefined) {
+        result[key] = value;
+      }
+    }
+    return result;
   } catch (error) {
     if (error instanceof Error) {
       console.error('Failed to parse cookies:', error.message);
