@@ -76,7 +76,7 @@
     "typecheck": "exec-tsc --noEmit"
   },
   "dependencies": {
-    "cookie-es": "3.0.1",
+    "cookie-es": "3.1.1",
     "intl-parse-accept-language": "1.0.0",
     "react-router": "7.13.2"
   },
@@ -86,7 +86,7 @@
     "@types/node": "25.5.0",
     "@vitest/coverage-v8": "4.1.2",
     "@vitest/ui": "4.1.2",
-    "tsdown": "0.21.5",
+    "tsdown": "0.21.7",
     "vitest": "4.1.2"
   }
 }
