@@ -184,4 +184,4 @@ This package is primarily maintained for Regardio's internal use, but we welcome
 ---
 
 *Part of the [Regardio Ensemble](https://regard.io/ensemble) toolkit for
-collective well-being.*
+shared well-being.*
