@@ -1,5 +1,16 @@
 # @regardio/js
 
+## [0.10.0] - 2026-04-08
+
+- chore(@regardio/js): upgrade dependencies
+- chore: deps
+- chore(@regardio/js): upgrade dependencies
+- chore: update workflow packages
+- chore: deps
+- chore: deps
+- chore: deps
+- fix: husky
+
 ## [0.9.3] - 2026-03-25
 
 - chore: deps
