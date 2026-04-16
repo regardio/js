@@ -78,7 +78,7 @@
   "dependencies": {
     "cookie-es": "3.1.1",
     "intl-parse-accept-language": "1.0.0",
-    "react-router": "7.14.0"
+    "react-router": "7.14.1"
   },
   "devDependencies": {
     "@regardio/dev": "workspace:*",
